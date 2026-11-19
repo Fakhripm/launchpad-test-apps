@@ -5,18 +5,24 @@ Open-source JavaScript apps for testing what Launchpad deploys. Each row has at 
 The rows cover what these Launchpad PRs added:
 
 - [#568](https://github.com/S-Quantum-Engine/launchpad/pull/568): a Node web server on its own.
-- [#567](https://github.com/S-Quantum-Engine/launchpad/pull/567): a backend in its own folder beside a front end, with no workspace.
+- A backend in its own folder beside a front end, with no workspace, and the rules these apps needed. Written as [#567](https://github.com/S-Quantum-Engine/launchpad/pull/567), which was split into four PRs and merged on 19 November 2026:
+  - [#660](https://github.com/S-Quantum-Engine/launchpad/pull/660): security pins where the package manager reads them, and a failed build's log.
+  - [#661](https://github.com/S-Quantum-Engine/launchpad/pull/661): the backend beside the front end.
+  - [#662](https://github.com/S-Quantum-Engine/launchpad/pull/662): settings an app's own schema and example file need, and the build's start-up check.
+  - [#663](https://github.com/S-Quantum-Engine/launchpad/pull/663): build, preflight and detection rules for old toolchains, ports, caches and databases.
 - [#624](https://github.com/S-Quantum-Engine/launchpad/pull/624): a pnpm lock file written by pnpm 7 or 8.
 
 Next.js, single-page apps and workspace backends are left out, since Launchpad deployed them before these PRs.
 
 ## Results
 
-Run on Launchpad's local stack (`LAUNCHPAD_TARGET=local`), from #567 and #624 together, finished on 18 November 2026. All 33 apps went live. Each failure on the way was fixed in a Launchpad rule, never in the app, and #567 holds those rules.
+Run on Launchpad's local stack (`LAUNCHPAD_TARGET=local`), from #567 and #624 together, finished on 18 November 2026. All 33 apps went live. Each failure on the way was fixed in a Launchpad rule, never in the app. Those rules are on Launchpad's main branch since 19 November 2026, in #660 to #663.
+
+An update of a live app was tested too, on `lptest-mern-stack-example`: one new version changed the page's heading, changed an existing route's answer and added a route. It went live, and all three changes answered at the app's address.
 
 - **Live:** the app passed Launchpad's live check. No change was made to an app by hand.
 - **Launchpad commits:** the changes Launchpad made to the app's code (its repairs, build fixes and the security fixes it offered), each accepted and replayed onto the copy as Launchpad's own commit.
-- **Notes:** for an app that failed first, the rule in #567 that made it go live.
+- **Notes:** for an app that failed first, the rule (now in #660 to #663) that made it go live.
 
 | Row | App (copy) | Upstream | Licence | Runtime | Package manager | Result | Launchpad commits | Notes |
 |---|---|---|---|---|---|---|---|---|
